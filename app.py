@@ -102,6 +102,8 @@ def startup_status_histogram(data, select):
     filtered_data = data[data["status"].isin(select)]
     fig = px.histogram(filtered_data["status"], title='Startups status')
     fig.update_xaxes(categoryorder='total ascending')
+    fig.update_layout(yaxis_title='Count')
+    fig.update_layout(xaxis_title='Status')
     return fig
 
 # Histogram to show Investments in round
@@ -113,6 +115,8 @@ def rounds_histogram(data, select):
         "investments": filtered_data.values
     })
     fig = px.histogram(new_data,x='rounds', y='investments', title='Investments in Round', color_discrete_sequence=["mediumpurple"])
+    fig.update_layout(yaxis_title='Investments')
+    fig.update_layout(xaxis_title='Rounds')
     return fig
 
 # Line chart to show Funding required each year
@@ -135,6 +139,8 @@ def debt_funding_scatter_plot(data):
         trendline="ols",
         title='Correlation between debt financing and startup funding'
     )
+    fig.update_layout(yaxis_title='Debt Financing')
+    fig.update_layout(xaxis_title='Total Funding in USD')
     return fig
 
 if __name__ == "__main__":
